@@ -289,7 +289,7 @@ if video_file is not None:
     check_requirements(exclude=("tensorboard", "thop"))
     run(
         weights='yolov5s.pt', imgsz=(640,640), conf_thres=0.25,
-        source="tempDir/"+file_details["FileName"], project="RESULTS_PATH"
+        source="tempDir/"+file_details["FileName"], project=RESULTS_PATH
     )
     
 
