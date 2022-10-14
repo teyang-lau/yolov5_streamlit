@@ -299,4 +299,5 @@ if video_file is not None:
     latest_folder = experiments[0]
 
     st.write(os.path.join(RESULTS_PATH, latest_folder, file_details["FileName"]))
-    st.video(os.path.join(RESULTS_PATH, "exp", file_details["FileName"]))
+    st.write(os.listdir(os.path.join(RESULTS_PATH, latest_folder)))
+    st.video(os.path.join(RESULTS_PATH, latest_folder, file_details["FileName"]))
