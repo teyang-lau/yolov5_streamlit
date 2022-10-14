@@ -28,6 +28,9 @@ if video_file is not None:
     file_details = {"FileName": video_file.name, "FileType": video_file.type}
     st.write(file_details)
     save_uploaded_file(video_file)
+    
+    if not os.path.exists(RESULTS_PATH):
+        os.makedirs(RESULTS_PATH)
 
     command = " python detect2.py --weights yolov5s.pt --img 640 --conf 0.25 --source tempDir/{} --project {}".format(
         file_details["FileName"], RESULTS_PATH
