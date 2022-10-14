@@ -287,10 +287,11 @@ if video_file is not None:
     #     shell=True,
     # )
     check_requirements(exclude=("tensorboard", "thop"))
-    run(
-        weights='yolov5s.pt', imgsz=(640,640), conf_thres=0.25,
-        source="tempDir/"+file_details["FileName"], project=RESULTS_PATH
-    )
+    with st.spinner(text="In progress..."):
+        run(
+            weights='yolov5s.pt', imgsz=(640,640), conf_thres=0.25,
+            source="tempDir/"+file_details["FileName"], project=RESULTS_PATH
+        )
     
 
     # get latest inferred video
