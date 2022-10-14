@@ -230,7 +230,7 @@ def run(
                             Path(save_path).with_suffix(".mp4")
                         )  # force *.mp4 suffix on results videos
                         vid_writer[i] = cv2.VideoWriter(
-                            save_path, cv2.VideoWriter_fourcc(*"H264"), fps, (w, h)
+                            save_path, cv2.VideoWriter_fourcc(*"mp4v"), fps, (w, h)
                         )
                     vid_writer[i].write(im0)
 
@@ -297,7 +297,11 @@ if video_file is not None:
     experiments = sorted(os.listdir(RESULTS_PATH), reverse=True)
     st.write(experiments)
     latest_folder = experiments[0]
+    out_video = os.path.join(RESULTS_PATH, latest_folder, file_details["FileName"])
+    out_video_recode = os.path.join(RESULTS_PATH, latest_folder, file_details["FileName"].replace('.mp4', '_recoded.mp4'))
 
-    st.write(os.path.join(RESULTS_PATH, latest_folder, file_details["FileName"]))
+    os.system('ffmpeg -i {} -vcodec libx264 {}'.format(out_video, out_video_recode))
+
+    st.write(out_video)
     st.write(os.listdir(os.path.join(RESULTS_PATH, latest_folder)))
-    st.video(os.path.join(RESULTS_PATH, latest_folder, file_details["FileName"]))
+    st.video(out_video_recode)
